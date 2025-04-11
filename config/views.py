@@ -27,8 +27,17 @@ def burger_search(request):
     # request.GET에서 "keyword" 키의 값을 가져와 출력
     keyword = request.GET.get("keyword")
 
+    # keyword 값이 주어진 경우
+    if keyword is not None:
+        # keyword 값으로 검색된 QuerySet을 할당
+        burgers = Burger.objects.filter(name__contains=keyword)
+    # 주소 표시줄을 통해 keyword가 주어지지 않아, None이 할당된 경우
+    else:
+        # 검색 결과가 없는 것과 같은 빈 QuerySet을 할당
+        burgers = Burger.objects.none()
+
     # 이름(name 속성)에 전달받은 키워드 값이 포함된 Burger를 검색한다
-    burgers = Burger.objects.filter(name__contains=keyword)
+    # burgers = Burger.objects.filter(name__contains=keyword)
 
     context = { "burgers": burgers }
     return render(request, "burger_search.html", context)
