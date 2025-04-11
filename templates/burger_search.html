@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang = "ko">
 <body>
-    <h1>pyburger의 햄버거 목록입니다</h1>
+    <h1>pyburger의 햄버거 검색화면입니다</h1>
+    <h2>검색 결과</h2>
     {% for burger in burgers %}
         <div>
             {{ burger.name }}
             (가격: {{ burger.price }}원,
-            칼로리: {{burger.calories }}kcal})
+            칼로리: {{ burger.calories }}kcal)
         </div>
     {% endfor %}
+    <div>{{ burgers }}</div>
 </body>
 </html>
